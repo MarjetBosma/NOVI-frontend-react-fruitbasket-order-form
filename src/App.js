@@ -24,9 +24,11 @@ function App() {
                   type="button"
                   disabled={strawberries === 0}  // Je kunt niet lager gaan qua aantal dan 0, daarom is de knop dan disabled.
                   onClick{() => setStrawberries(strawberries - 1)} // Elke druk op de knop verlaagt het aantal.
-                  >
+              >
                   -
               </button>
+              <p>{strawberries}</p>
+              {/* Geeft steeds het huidige aantal weer*/}
               <button
                   type="button"
                   onClick{() => setStrawberries(strawberries + 1)} // Elke druk op de knop verhoogt het aantal.
@@ -43,6 +45,7 @@ function App() {
               >
                   -
               </button>
+              <p>{bananas}</p>
               <button
                   type="button"
                   onClick{() => setBananas(bananas + 1)}
@@ -59,6 +62,7 @@ function App() {
               >
                   -
               </button>
+              <p>{apples}</p>
               <button
                   type="button"
                   onClick{() => setApples(apples + 1)}
@@ -75,6 +79,7 @@ function App() {
               >
                   -
               </button>
+              <p>{kiwis}</p>
               <button
                   type="button"
                   onClick{() => setKiwis(kiwis + 1)}
@@ -88,7 +93,6 @@ function App() {
                 Reset
           </button>
       </section>
-
     </>
   );
 }
