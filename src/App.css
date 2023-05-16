@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.fruit-counter {
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+}
+
+article {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+
+}
+
+.counter-button {
+    margin-inline: 10px;
+    padding-inline: 10px;
+}
+
+.reset-button {
+    width: fit-content;
+    margin: 20px;
+    padding: 15px 20px;
+    align-self: center;
+}
