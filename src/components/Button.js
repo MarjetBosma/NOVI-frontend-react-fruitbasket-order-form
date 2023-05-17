@@ -1,8 +1,15 @@
 import React from 'react';
 
-function Button(props) {
+function Button({ clickHandler, type, disabled, children}) {
     return (
-        <div></div>
+        <button
+            onClick={clickHandler}
+            type={type}
+            disabled={disabled || false} // in principe false, disabled wanneer dit wordt aangegeven
+        >
+            {children}
+            {/*In dit geval staat de children property voor de tekst op de button*/}
+        </button>
     );
 }
 

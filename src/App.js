@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import logo from "./assets/screenshot-logo.png"
-
+import Button from "./components/Button";
+import Counter from "./components/Counter";
+import InputField from "./components/InputField";
 
 function App() {
-
     const [strawberries, setStrawberries] = useState(0);
     const [bananas, setBananas] = useState(0);
     const [apples, setApples] = useState(0);
@@ -46,134 +47,83 @@ function App() {
         <img src={logo} alt="logo" id="logo"/>
     </div>
     <h1>Fruitmand bezorgservice</h1>
-      <section className="fruit-counter">
+      <section className="fruit-counter-section">
           <h2>Kies uw fruit</h2>
           <article>
               <h2>🍓 Aardbeien</h2>
-              <button
-                  className="counter-button"
-                  type="button"
-                  disabled={strawberries === 0}  // Je kunt niet lager gaan qua aantal dan 0, daarom is de knop dan disabled.
-                  onClick={() => setStrawberries(strawberries - 1)} // Elke druk op de knop verlaagt het aantal.
-              >
-                  -
-              </button>
-              <p>{strawberries}</p>
-              {/* Geeft steeds het huidige aantal weer*/}
-              <button
-                  className="counter-button"
-                  type="button"
-                  onClick={() => setStrawberries(strawberries + 1)} // Elke druk op de knop verhoogt het aantal.
-              >
-                  +
-              </button>
+              <Counter
+                fruitCount={strawberries}
+                setFruitCount={setStrawberries}
+              />
           </article>
           <article>
               <h2> 🍌 Bananen</h2>
-              <button
-                  className="counter-button"
-                  type="button"
-                  disabled={bananas === 0}
-                  onClick={() => setBananas(bananas - 1)}
-              >
-                  -
-              </button>
-              <p>{bananas}</p>
-              <button
-                  className="counter-button"
-                  type="button"
-                  onClick={() => setBananas(bananas + 1)}
-              >
-                  +
-              </button>
+              <Counter
+                  fruitCount={bananas}
+                  setFruitCount={setBananas}
+              />
           </article>
           <article>
               <h2>🍏 Appels</h2>
-              <button
-                  className="counter-button"
-                  type="button"
-                  disabled={apples === 0}
-                  onClick={() => setApples(apples - 1)}
-              >
-                  -
-              </button>
-              <p>{apples}</p>
-              <button
-                  className="counter-button"
-                  type="button"
-                  onClick={() => setApples(apples + 1)}
-              >
-                  +
-              </button>
+              <Counter
+                  fruitCount={apples}
+                  setFruitCount={setApples}
+              />
           </article>
           <article>
               <h2>🥝 Kiwi's</h2>
-              <button
-                  className="counter-button"
-                  type="button"
-                  disabled={kiwis === 0}
-                  onClick={() => setKiwis(kiwis - 1)}
-              >
-                  -
-              </button>
-              <p>{kiwis}</p>
-              <button
-                  className="counter-button"
-                  type="button"
-                  onClick={() => setKiwis(kiwis + 1)}
-              >
-                  +
-              </button>
+              <Counter
+                  fruitCount={kiwis}
+                  setFruitCount={setKiwis}
+              />
           </article>
-          <button
-                className="reset-button"
-                type="button"
-                onClick={() => resetFruits()}>
-                Reset
-          </button>
+          <Button
+              className="reset-button"
+              type="button"
+              clickHandler={resetFruits}
+          >
+              Reset
+          </Button>
       </section>
+
       <form onSubmit={handleSubmit}>
           <h2>Vul uw gegevens in</h2>
           <article className="form-field">
-              <label htmlFor="first-name-field">Voornaam</label>
-                <input
-                    type="text"
-                    id="first-name-input"
-                    name="first-name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    />
+              <InputField
+              type="text"
+              name="first-name"
+              value={firstName}
+              changeHandler={setFirstName}
+              label="Voornaam"
+              />
           </article>
           <article className="form-field">
-              <label htmlFor="last-name-field">Achternaam</label>
-              <input
+              <InputField
                   type="text"
-                  id="last-name-input"
                   name="last-name"
                   value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  changeHandler={setLastName}
+                  label="Achternaam"
               />
           </article>
           <article className="form-field">
-              <label htmlFor="age-field">Leeftijd</label>
-              <input
-                  type="text"
-                  id="age-input"
+              <InputField
+                  type="number"
                   name="age"
                   value={age}
-                  onChange={(e) => setAge(e.target.value)}
+                  changeHandler={setAge}
+                  label="Leeftijd"
               />
           </article>
           <article className="form-field">
-              <label htmlFor="zip-code-field">Voornaam</label>
-              <input
-                  type="text"
-                  id="zip-code-input"
-                  name="zip-code"
-                  value={zipCode}
-                  onChange={(e) => setZipCode(e.target.value)}
-              />
-          </article>
+          <InputField
+              type="text"
+              name="zip-code"
+              value={zipCode}
+              changeHandler={setZipCode}
+              label="Postcode"
+          />
+      </article>
           <article className="form-field" id="form-field-comment">
               <label htmlFor="comment-field">Opmerking</label>
               <textarea
@@ -229,6 +179,11 @@ function App() {
               />
               Ik ga akkoord met de voorwaarden
           </article>
+          <Button
+              type="submit"
+          >
+              Verzend
+          </Button>
       </form>
     </>
   );
