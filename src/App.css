@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .image-wrapper {
     display: flex;
     flex-direction: row;
@@ -39,7 +40,6 @@ article {
     padding: 20px;
     border: 1px solid black;
     border-radius: 5px;
-
 }
 
 Button {
@@ -48,7 +48,6 @@ Button {
     padding: 15px 20px;
     align-self: center
 }
-
 
 form {
     display: flex;
@@ -64,6 +63,11 @@ form {
 
 label {
     margin-inline: 10px;
+}
+
+#comment-field-label {
+    align-self: flex-start;
+    margin-left: 20px;
 }
 
 #agree-to-terms-checkbox {

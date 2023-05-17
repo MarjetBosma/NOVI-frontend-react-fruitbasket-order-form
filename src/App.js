@@ -125,13 +125,14 @@ function App() {
           />
       </article>
           <article className="form-field" id="form-field-comment">
-              <label htmlFor="comment-field">Opmerking</label>
+              <label htmlFor="comment-field" id="comment-field-label">Opmerking</label>
               <textarea
                   id="comment-field-textarea"
                   name="comment"
                   value={comment}
                   rows="6"
                   cols="48"
+                  placeholder="Schrijf hier uw opmerking"
                   onChange={(e) => setComment(e.target.value)}
               />
           </article>
