@@ -60,6 +60,15 @@ form {
     align-items: center;
 }
 
+#form-field-comment {
+    display: flex;
+    flex-direction: column;
+}
+
 label {
+    margin-inline: 10px;
+}
+
+#agree-to-terms-checkbox {
     margin-right: 10px;
 }

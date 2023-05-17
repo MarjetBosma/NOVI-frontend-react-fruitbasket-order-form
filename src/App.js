@@ -14,10 +14,10 @@ function App() {
     const [lastName, setLastName] = useState('')
     const [age, setAge] = useState(0);
     const [zipCode, setZipCode] = useState('')
-    const [deliveryFrequency, toggleDeliveryFrequency] = useState('week');
+    const [deliveryFrequency, toggleDeliveryFrequency] = useState('weekly');
     const [deliveryTimeslot, toggleDeliveryTimeslot] = useState('daytime');
-    const [remark, setRemark] = useState('');
-    const [agreeTerms, toggleAgreeTerms] = useState(false);
+    const [comment, setComment] = useState('');
+    const [agreeToTerms, toggleAgreeToTerms] = useState(false);
 
 
     function resetFruits() {  // Deze functie hoort bij de resetknop onderaan
@@ -36,7 +36,7 @@ function App() {
                      Bezorgfrequentie: ${deliveryFrequency},
        
     `);
-        console.log(`Fruitmand bestelling - aardbeiden: ${strawberries}, bananen: ${bananas}, appels: ${apples}, kiwi's: ${kiwis}`);
+        console.log(`Fruitmand bestelling - aardbeien: ${strawberries}, bananen: ${bananas}, appels: ${apples}, kiwi's: ${kiwis}`);
     }
 
   return (
@@ -138,7 +138,7 @@ function App() {
               <label htmlFor="first-name-field">Voornaam</label>
                 <input
                     type="text"
-                    id="first-name-field"
+                    id="first-name-input"
                     name="first-name"
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -148,7 +148,7 @@ function App() {
               <label htmlFor="last-name-field">Achternaam</label>
               <input
                   type="text"
-                  id="last-name-field"
+                  id="last-name-input"
                   name="last-name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
@@ -158,7 +158,7 @@ function App() {
               <label htmlFor="age-field">Leeftijd</label>
               <input
                   type="text"
-                  id="age-field"
+                  id="age-input"
                   name="age"
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
@@ -168,17 +168,68 @@ function App() {
               <label htmlFor="zip-code-field">Voornaam</label>
               <input
                   type="text"
-                  id="zip-code-field"
+                  id="zip-code-input"
                   name="zip-code"
                   value={zipCode}
                   onChange={(e) => setZipCode(e.target.value)}
               />
           </article>
-
-
+          <article className="form-field" id="form-field-comment">
+              <label htmlFor="comment-field">Opmerking</label>
+              <textarea
+                  id="comment-field-textarea"
+                  name="comment"
+                  value={comment}
+                  rows="6"
+                  cols="48"
+                  onChange={(e) => setComment(e.target.value)}
+              />
+          </article>
+          <article className="form-field">
+              <label htmlFor="delivery-field">Bezorgfrequentie</label>
+                <select
+                  id="delivery-field-selector"
+                  name="delivery"
+                  value={deliveryFrequency}
+                  onChange={(e) => toggleDeliveryFrequency(e.target.value)}
+                >
+                  <option value="weekly">Iedere week</option>
+                  <option value="biweekly">Om de week</option>
+                  <option value="monthly">Iedere maand</option>
+                </select>
+          </article>
+          <article>
+              <input
+                type="radio"
+                name="timeslot"
+                id="timeslot-field-daytime-input"
+                value="daytime"
+                checked={deliveryTimeslot === "daytime"}
+                onChange={(e) => toggleDeliveryTimeslot(e.target.value)}
+              />
+              <label htmlFor="timeslot-field-daytime">Overdag</label>
+              <input
+                  type="radio"
+                  name="timeslot"
+                  id="timeslot-field-evening-input"
+                  value="evening"
+                  checked={deliveryTimeslot === "evening"}
+                  onChange={(e) => toggleDeliveryTimeslot(e.target.value)}
+              />
+              <label htmlFor="timeslot-field-evening">'s Avonds</label>
+          </article>
+          <article className="form-field">
+              <label htmlFor="agree-to-terms-field"/>
+              <input
+                  type="checkbox"
+                  id="agree-to-terms-checkbox"
+                  name="agree-to-terms"
+                  checked={agreeToTerms}
+                  onChange={(e) => toggleAgreeToTerms(e.target.checked)}
+              />
+              Ik ga akkoord met de voorwaarden
+          </article>
       </form>
-
-
     </>
   );
 }
