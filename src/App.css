@@ -42,12 +42,18 @@ article {
     border-radius: 5px;
 }
 
-Button {
-    width: fit-content;
+.red-border {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     margin: 20px;
-    padding: 15px 20px;
-    align-self: center
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid red;
 }
+/* Dit hoort bij de conditionele styling, zie verder de beschrijving in App.js. Helaas werkt het nog niet... :'-( */
 
 form {
     display: flex;

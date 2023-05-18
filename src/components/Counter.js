@@ -2,6 +2,7 @@ import React from 'react';
 import Button from './Button';
 
 function Counter({ setFruitCount, fruitCount}) {
+
     return (
       <>
         <Button

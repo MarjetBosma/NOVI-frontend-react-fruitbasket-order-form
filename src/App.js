@@ -12,7 +12,7 @@ function App() {
     const [apples, setApples] = useState(0);
     const [kiwis, setKiwis] = useState(0);
 
-    // Reguliere opdracht: Losse state initialisaties voor elk invoerveld
+    // Basisopdracht: Losse state initialisaties voor elk invoerveld
     // const [firstName, setFirstName] = useState('')
     // const [lastName, setLastName] = useState('')
     // const [age, setAge] = useState(0);
@@ -34,9 +34,17 @@ function App() {
         agreeToTerms: false,
     });
 
-    // handleChange functie die toetsaanslagen op het hele formulier registreert
-    function handleChangeForm(e) {
-        const changedFieldName = e.target.name; // Object key in variable zetten
+    // Bonus: conditioneel stylen. Ik wil bereiken dat als mijn button in de fruitcounter (article element) wordt aangeklikt, deze active wordt, en dat dan de rand van het article element rood wordt (is standaard zwart). Hieronder initialiseer ik state hiervoor, en daaronder geef ik een anonieme functie mee aan de variabele handleClick om de status op active te zetten als er geklikt wordt. Zie verder bij de article elementen voor elke fruitsoort.
+    // Ik heb de methode op internet gevonden. Helaas werkt het nog niet... :'-(
+
+    const [active, setActive] = useState(false);
+
+    const handleClick = () => {
+        setActive(true)
+
+    // handleFormChange functie die toetsaanslagen op het hele formulier registreert
+    function handleFormChange(e) {
+        const changedFieldName = e.target.name; // Object key van de veldnaam in variabele zetten
         const newValue = e.target.type === "checkbox" ? e.target.checked : e.target.value;
         // Bij een checkbox e.target.checked gebruiken, in alle andere gevallen e.target.value.
 
@@ -60,6 +68,8 @@ function App() {
                      Leeftijd: ${formState.age}, 
                      Postcode: ${formState.zipCode}, 
                      Bezorgfrequentie: ${formState.deliveryFrequency},
+                     Bezorgtijd: ${formState.deliveryTimeslot}
+                     Akkoord met voorwaarden: ${formState.agreeToTerms}
        
     `); // Voor bonusopdracht formState toevoegen voor elke variabele, en formState loggen.
         console.log(formState);
@@ -75,28 +85,41 @@ function App() {
     <h1>Fruitmand bezorgservice</h1>
       <section className="fruit-counter-section">
           <h2>Kies uw fruit</h2>
-          <article>
+          <article
+            className={active ? "red-border" : ""} // Conditioneel stylen, zie ook de uitleg op regel 37 en verder. Hier stel ik dat als het veld active is na een klik op een button daarin, het element een classname "red-border" krijgt, die ik in mijn CSS kan aanspreken. Daarvoor heeft het element geen classname en gebruikt het de styling gesteld voor het article element. Helaas werkt het nog niet... :'-( */
+          >
+              onClick={handleClick}
+              {/*Conditioneel stylen/ Als er op een button wordt geklikt wordt de anonieme functie bij de handleClick variabele (regel 40) in werking gezet. Helaas werkt het nog niet... :'-( */}
               <h2>🍓 Aardbeien</h2>
               <Counter
                 fruitCount={strawberries}
                 setFruitCount={setStrawberries}
               />
           </article>
-          <article>
+          <article
+              className={active ? "red-border" : ""}
+          >
+              onClick={handleClick}>
               <h2> 🍌 Bananen</h2>
               <Counter
                   fruitCount={bananas}
                   setFruitCount={setBananas}
               />
           </article>
-          <article>
+          <article
+              className={active ? "red-border" : ""}
+          >
+              onClick={handleClick}>
               <h2>🍏 Appels</h2>
               <Counter
                   fruitCount={apples}
                   setFruitCount={setApples}
               />
           </article>
-          <article>
+          <article
+              className={active ? "red-border" : ""}
+          >
+              onClick={handleClick}>
               <h2>🥝 Kiwi's</h2>
               <Counter
                   fruitCount={kiwis}
@@ -116,43 +139,67 @@ function App() {
           <h2>Vul uw gegevens in</h2>
           <article className="form-field">
               <InputField
-              inputType="text" // Voor bonusopdracht inputType gebruiken i.p.v. type en name, zie handleChangeForm functie
+              inputType="text" // Voor bonusopdracht inputType gebruiken i.p.v. type en name, zie handleChangeForm functie.
               inputName="first-name"
               value={formState.firstName} // Voor bonusopdracht formState toevoegen
               // changeHandler={setFirstName} // Basisopdracht
-              changeHandler={handleChangeForm} // Bonusopdracht
+              handleInputChange={(e) =>
+                  setFormState({
+                      ...formState,
+                      firstName: e.target.value
+                  })} // Bonusopdracht
               label="Voornaam"
               />
+              {/*Opmerking: Ik zou verwachten dat ik voor handleInputChange simpelweg kan verwijzen naar de functie handleFormChange, dus op deze manier: handleInputChange={handleFormChange}. Maar om een of andere reden werkt dat niet. Ik kan dan niets typen of aanklikken in het formulier. Vandaar deze noodoplossing. Mocht je begrijpen wat er misgaat, beste reviewer, dan hoor ik dat graag!*/}
           </article>
+
           <article className="form-field">
               <InputField
                   type="text"
                   name="last-name"
                   value={formState.lastName}
-                  // changeHandler={setLastName}
-                  changeHandler={handleChangeForm}
+                  // changeHandler={setLastName} // Basisopdracht
+                  handleInputChange={(e) =>
+                      setFormState({
+                          ...formState,
+                          lastName: e.target.value
+                      })}
                   label="Achternaam"
               />
+              {/*handleInputChange={handleFormChange} werkt hier ook niet.*/}
           </article>
+
           <article className="form-field">
               <InputField
                   type="number"
                   name="age"
                   value={formState.age}
-                  // changeHandler={setAge}
-                  changeHandler={handleChangeForm}
+                  // changeHandler={setAge} // Basisopdracht
+                  handleInputChange={(e) =>
+                      setFormState({
+                          ...formState,
+                          age: e.target.value
+                      })}
                   label="Leeftijd"
               />
+              {/*handleInputChange={handleFormChange} werkt hier ook niet.*/}
           </article>
+
           <article className="form-field">
               <InputField
                   type="text"
                   name="zip-code"
                   value={formState.zipCode}
-                  // changeHandler={setZipCode}
-                  changeHandler={handleChangeForm}
+                  // changeHandler={setZipCode}  // Basisopdracht
+                  handleInputChange={(e) =>
+                      setFormState({
+                          ...formState,
+                          zipCode: e.target.value
+                      })}
                   label="Postcode"
               />
+              {/*handleInputChange={handleFormChange} werkt hier ook niet.*/}
+
           </article>
           <article className="form-field" id="form-field-comment">
               <label htmlFor="comment-field" id="comment-field-label">Opmerking</label>
@@ -163,9 +210,10 @@ function App() {
                   rows="6"
                   cols="48"
                   placeholder="Schrijf hier uw opmerking"
-                  // onChange={(e) => setComment(e.target.value)}
-                  onChange={handleChangeForm}
+                  onChange={handleFormChange}
               />
+              {/*Opmerking: Gek genoeg werkt de verwijzing naar de handleFormChange functie hier wel. Ik kan gewoon in het tekstvak typen en de inhoud wordt ook gelogd.*/}
+
           </article>
           <article className="form-field">
               <label htmlFor="delivery-field">Bezorgfrequentie</label>
@@ -173,14 +221,20 @@ function App() {
                   id="delivery-field-selector"
                   name="delivery"
                   value={formState.deliveryFrequency}
-                  // onChange={(e) => toggleDeliveryFrequency(e.target.value)}
-                  onChange={handleChangeForm}
+                  // onChange={(e) => toggleDeliveryFrequency(e.target.value)} // Basisopdracht
+                  onChange={(e) =>
+                      setFormState({
+                          ...formState,
+                          deliveryFrequency: e.target.value
+                      })}
                 >
                   <option value="weekly">Iedere week</option>
                   <option value="biweekly">Om de week</option>
                   <option value="monthly">Iedere maand</option>
                 </select>
+              {/*De verwijzing naar de handleFormChange functie, in dit geval onchange={handleFormChange}, werkt hier ook niet. Ik kan dan wel een optie uit het uitklapmenu kiezen, maar de standaardwaarde wordt niet overschreven.*/}
           </article>
+
           <article>
               <input
                 type="radio"
@@ -188,21 +242,33 @@ function App() {
                 id="timeslot-field-daytime-input"
                 value="daytime"
                 checked={formState.deliveryTimeslot === "daytime"}
-                // onChange={(e) => toggleDeliveryTimeslot(e.target.value)}
-                onChange={handleChangeForm}
+                // onChange={(e) => toggleDeliveryTimeslot(e.target.value)} // Basisopdracht
+                onChange={(e) =>
+                    setFormState({
+                        ...formState,
+                        firstName: e.target.value
+                    })}
               />
+              {/*De verwijzing naar de handleFormChange functie, in dit geval onchange={handleFormChange}, werkt hier ook niet. Ik kan geen andere optie aanklikken dan de standaardwaarde..*/}
               <label htmlFor="timeslot-field-daytime">Overdag</label>
+
               <input
                   type="radio"
                   name="timeslot"
                   id="timeslot-field-evening-input"
                   value="evening"
                   checked={formState.deliveryTimeslot === "evening"}
-                  // onChange={(e) => toggleDeliveryTimeslot(e.target.value)}
-                  onChange={handleChangeForm}
+                  // onChange={(e) => toggleDeliveryTimeslot(e.target.value)} // Basisopdracht
+                  onChange={(e) =>
+                      setFormState({
+                          ...formState,
+                          deliveryTimeslot: e.target.value
+                      })}
               />
+              {/*Zie opmerking over de handleFormChange functie hierboven.*/}
               <label htmlFor="timeslot-field-evening">'s Avonds</label>
           </article>
+
           <article className="form-field">
               <label htmlFor="agree-to-terms-field"/>
               <input
@@ -210,9 +276,14 @@ function App() {
                   id="agree-to-terms-checkbox"
                   name="agree-to-terms"
                   checked={formState.agreeToTerms}
-                  // onChange={(e) => toggleAgreeToTerms(e.target.checked)}
-                  onChange={handleChangeForm}
+                  // onChange={(e) => toggleAgreeToTerms(e.target.checked)} // Basisopdracht
+                  onChange={(e) =>
+                      setFormState({
+                          ...formState,
+                          agreeToTerms: e.target.checked
+                      })}
               />
+              {/*De verwijzing naar de handleFormChange functie, in dit geval onchange={handleFormChange}, werkt hier ook niet. Ik kan de checkbox dan niet aanvinken.*/}
               Ik ga akkoord met de voorwaarden
           </article>
           <Button
@@ -223,6 +294,5 @@ function App() {
       </form>
     </>
   );
-}
-
+}}
 export default App;
