@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function InputField({ label, type, id, name, value, changeHandler}) { // Ik begrijp niet waarom id grijs blijft...?
+function InputField({ label, type, id, name, value, handleChangeForm}) { // Ik begrijp niet waarom id grijs blijft...?
     return (
       <>
         <label htmlFor={`${name}-field`}>{label}</label>
@@ -10,10 +10,10 @@ function InputField({ label, type, id, name, value, changeHandler}) { // Ik begr
           id={`${name}-input`}
           name={name}
           value={value}
-          onChange={(e) => changeHandler(e.target.value)}
+          // onChange={(e) => handleChangeForm(e)} // Zo deed ik het bij de basisopdrachten
+          onChange={handleChangeForm} // Deze schrijfwijze werd op EdHub gebruikt bij de beschrijving van hoe je één onChange handler voor meerdere events gebruikt.
         />
       </>
     );
-}
 
 export default InputField;
