@@ -78,7 +78,6 @@ function App() {
 
   return (
     <>
-
     <div className="image-wrapper">
         <img src={logo} alt="logo" id="logo"/>
     </div>
