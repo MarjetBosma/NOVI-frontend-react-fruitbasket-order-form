@@ -291,5 +291,5 @@ function App() {
       </form>
     </>
   );
-}}
+}
 export default App;
