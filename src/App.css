@@ -42,7 +42,7 @@ article {
     border-radius: 5px;
 }
 
-.red-border {
+.red-border:focus-within {
     display: flex;
     flex-direction: row;
     justify-content: center;
