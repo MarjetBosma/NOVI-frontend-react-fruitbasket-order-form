@@ -86,7 +86,7 @@ function App() {
       <section className="fruit-counter-section">
           <h2>Kies uw fruit</h2>
           <article
-            className={active ? "red-border" : ""} // Conditioneel stylen, zie ook de uitleg op regel 37 en verder. Hier stel ik dat als het veld active is na een klik op een button daarin, het element een classname "red-border" krijgt, die ik in mijn CSS kan aanspreken. Daarvoor heeft het element geen classname en gebruikt het de styling gesteld voor het article element. Helaas werkt het nog niet... :'-( */
+            className="red-border"
               onClick={handleClick}>
               {/*Conditioneel stylen/ Als er op een button wordt geklikt wordt de anonieme functie bij de handleClick variabele (regel 40) in werking gezet. Helaas werkt het nog niet... :'-( */}
               <h2>🍓 Aardbeien</h2>
