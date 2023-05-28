@@ -34,9 +34,6 @@ function App() {
         agreeToTerms: false,
     });
 
-    // Bonus: conditioneel stylen. Ik wil bereiken dat als mijn button in de fruitcounter (article element) wordt aangeklikt, deze active wordt, en dat dan de rand van het article element rood wordt (is standaard zwart). Hieronder initialiseer ik state hiervoor, en daaronder geef ik een anonieme functie mee aan de variabele handleClick om de status op active te zetten als er geklikt wordt. Zie verder bij de article elementen voor elke fruitsoort.
-    // Ik heb de methode op internet gevonden. Helaas werkt het nog niet... :'-(
-
     const [active, setActive] = useState(false);
 
     const handleClick = () => {
@@ -88,7 +85,6 @@ function App() {
           <article
             className="red-border"
               onClick={handleClick}>
-              {/*Conditioneel stylen/ Als er op een button wordt geklikt wordt de anonieme functie bij de handleClick variabele (regel 40) in werking gezet. Helaas werkt het nog niet... :'-( */}
               <h2>🍓 Aardbeien</h2>
               <Counter
                 fruitCount={strawberries}
@@ -146,7 +142,7 @@ function App() {
                   })} // Bonusopdracht
               label="Voornaam"
               />
-              {/*Opmerking: Ik zou verwachten dat ik voor handleInputChange simpelweg kan verwijzen naar de functie handleFormChange, dus op deze manier: handleInputChange={handleFormChange}. Maar om een of andere reden werkt dat niet. Ik kan dan niets typen of aanklikken in het formulier. Vandaar deze noodoplossing. Mocht je begrijpen wat er misgaat, beste reviewer, dan hoor ik dat graag!*/}
+              {/*Opmerking: Ik zou verwachten dat ik voor handleInputChange simpelweg kan verwijzen naar de functie handleFormChange, dus op deze manier: handleInputChange={handleFormChange}. Maar om een of andere reden werkt dat niet. Ik kan dan niets typen of aanklikken in het formulier. Vandaar deze noodoplossing.*/}
           </article>
 
           <article className="form-field">
