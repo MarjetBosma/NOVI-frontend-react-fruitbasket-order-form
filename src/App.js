@@ -105,7 +105,7 @@ function App() {
               />
           </article>
           <article
-              className={active ? "red-border" : ""}
+            className="red-border"
               onClick={handleClick}>
               <h2>🍏 Appels</h2>
               <Counter
