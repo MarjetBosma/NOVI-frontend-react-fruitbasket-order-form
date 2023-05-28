@@ -41,6 +41,7 @@ function App() {
 
     const handleClick = () => {
         setActive(true)
+    }
 
     // handleFormChange functie die toetsaanslagen op het hele formulier registreert
     function handleFormChange(e) {
